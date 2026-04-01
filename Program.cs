@@ -8,16 +8,16 @@
 // AUFGABE 1 – Beantworte folgende Fragen hier als Kommentar:
 //
 // Frage 1: Wie viele Entscheidungsknoten (Rauten) hat der PAP?
-// Antwort: 
+// Antwort: 6 Knoten
 //
 // Frage 2: Unter welchen Bedingungen endet das Programm frühzeitig?
-// Antwort: 
+// Antwort: Wenn die Größe nicht in Meter angegeben wird und nicht größer als 0 ist
 //
 // Frage 3: Warum wird TryParse statt Convert.ToDouble() verwendet?
-// Antwort: 
+// Antwort: Tryparse löst einen Fehler aus, wenn die Variable nicht den Regeln entspricht
 //
 // Frage 4: Welchen Datentyp sollen gewicht und groesse haben, und warum?
-// Antwort: 
+// Antwort: double, da Kommazahlen sinnvoll für die Berechnung sind
 //
 // ============================================================
 
@@ -25,20 +25,35 @@
 //       Orientiere dich dabei am PAP in der README.md.
 //       Jeder Schritt im PAP sollte einer Zeile / einem Block in deinem Code entsprechen.
 
+
+
 // ── Schritt 1: Programmtitel ausgeben ───────────────────────
 // Tipp: Nutze Console.WriteLine() für die Titelbox.
 // TODO: Ausgabe der Titelzeile (wie im Beispiel in der README)
 
+using System.Runtime.Intrinsics.X86;
+
+Console.WriteLine("Wir berechnen heute Deinen BMI");
+Console.WriteLine("Bitte gebe Deinen Namen ein:");
 
 // ── Schritt 2: Eingabe – Name ────────────────────────────────
 // TODO: Benutzernamen einlesen (string, kein TryParse nötig)
 
+string Name = Console.ReadLine();
 
 // ── Schritt 3: Eingabe – Gewicht mit Validierung ─────────────
 // TODO: Gewicht als Text einlesen
 // TODO: Mit double.TryParse() in eine Zahl umwandeln
 // TODO: Falls ungültig → Fehlermeldung ausgeben und Programm beenden (return)
 
+Console.WriteLine("Als nächstes benötige ich dein Gewicht in kg");
+double gewicht;
+bool gewicht2 = double.TryParse(Console.ReadLine(), out gewicht);
+
+
+if (gewicht2 == false)
+
+{ Console.WriteLine("Fehler - Ungültige Eingabe"); return; }
 
 // ── Schritt 4: Eingabe – Größe mit Validierung ───────────────
 // TODO: Körpergröße als Text einlesen
@@ -47,12 +62,33 @@
 // TODO: Zusätzlich prüfen: Ist die Größe größer als 0?
 //       Falls nicht → eigene Fehlermeldung und Programm beenden (return)
 
+Console.WriteLine("Gebe bitte Deine Größe in Meter an");
+
+double größe;
+
+bool größe2 = double.TryParse(Console.ReadLine(), out größe);
+
+if (größe2 == false)
+{
+    Console.WriteLine("Fehler - Ungültige Eingabe");
+
+
+}
+else if (größe < 0) ;
+{
+    Console.WriteLine("Fehler - Größe muss positiv sein"); return;
+}
+
+
 
 // ── Schritt 5: BMI berechnen ─────────────────────────────────
 // Formel: BMI = Gewicht / (Größe * Größe)
 // TODO: BMI berechnen und in einer Variablen speichern
+var BMI;
+BMI = gewicht / (größe * größe);
 
-
+bool BMI
+if (BMI < 18.5) {} 
 // ── Schritt 6: Kategorie bestimmen ───────────────────────────
 // TODO: Erstelle eine string-Variable "kategorie"
 // TODO: Bestimme die Kategorie über eine if-else-if-Kette:
@@ -68,3 +104,4 @@
 // ── Schritt 7: Ergebnis ausgeben ─────────────────────────────
 // TODO: Gib Name, BMI (auf 2 Dezimalstellen) und Kategorie formatiert aus
 // Tipp: Nutze z.B. $"{bmi:F2}" für 2 Nachkommastellen
+
